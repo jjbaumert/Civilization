@@ -15,10 +15,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 public class Main extends Application {
-    private Scene scene;
     private MapRegions mapRegions;
     private Label coordinateLabel;
-    private Canvas mapCanvas;
     private Canvas regionCanvas;
     private MapRegion selectedRegion;
     private Image mapImage;
@@ -30,8 +28,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("civ.fxml"));
         primaryStage.setTitle("Civilization");
 
-        scene = new Scene(root, 1500, 800);
-        mapCanvas = (Canvas) scene.lookup("#mapCanvas");
+        Scene scene = new Scene(root, 1500, 800);
+        Canvas mapCanvas = (Canvas) scene.lookup("#mapCanvas");
+
         regionCanvas = (Canvas) scene.lookup("#regionCanvas");
         coordinateLabel = (Label) scene.lookup("#coordinates");
         mapImage = new Image("map/CivilizationMap.jpg");
@@ -107,18 +106,18 @@ public class Main extends Application {
 
         String featureDescription = "";
 
-        if(selectedRegion.citySite) {
+        if(selectedRegion.attributes.hasCitySite()) {
             featureDescription += "City Site";
         }
 
-        if(selectedRegion.floodPlain) {
+        if(selectedRegion.attributes.hasFloodPlain()) {
             if(!featureDescription.equals("")) {
                 featureDescription += ", ";
             }
             featureDescription += "Flood Plain";
         }
 
-        if(selectedRegion.volcanic) {
+        if(selectedRegion.attributes.hasVolcano()) {
             if(!featureDescription.equals("")) {
                 featureDescription += ", ";
             }
@@ -136,14 +135,8 @@ public class Main extends Application {
         double imageWidth = ((selectedRegion.lowerRight.x-selectedRegion.upperLeft.x)+40)*aspectRatioX;
         double imageHeight = ((selectedRegion.lowerRight.y-selectedRegion.upperLeft.y)+40)*aspectRatioY;
 
-        if(imageWidth>imageHeight) {
-            //imageStartX = Double.max(0, imageStartX-(imageWidth-imageHeight)/2);
-            imageHeight=imageWidth;
-
-        } else {
-            //imageStartY = Double.max(0, imageStartY-(imageHeight-imageWidth)/2);
-            imageWidth=imageHeight;
-        }
+        // Make square with the maximum dimension
+        imageHeight = imageWidth = Double.max(imageHeight, imageWidth);
 
         regionContext.drawImage(mapImage,
                 imageStartX,
