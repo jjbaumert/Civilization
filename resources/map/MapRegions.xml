@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<map>
+    <mapregion>
+        <land/>
+        <ocean/>
+        <name>Hibernia</name>
+        <production>1</production>
+        <boundary>
+            <point x="0" y="0"/>
+            <point x="0" y="64"/>
+            <point x="60" y="80"/>
+            <point x="92" y="43"/>
+            <point x="118" y="47"/>
+            <point x="130" y="37"/>
+            <point x="135" y="0"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <ocean/>
+        <name>Britannia</name>
+        <boundary>
+            <point x="60" y="80"/>
+            <point x="67" y="100"/>
+            <point x="181" y="80"/>
+            <point x="214" y="39"/>
+            <point x="226" y="0"/>
+            <point x="136" y="0"/>
+            <point x="131" y="38"/>
+            <point x="119" y="47"/>
+            <point x="93" y="44"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <ocean/>
+        <name>Atlantic</name>
+        <boundary>
+            <point x="0" y="64"/>
+            <point x="60" y="80"/>
+            <point x="65" y="98"/>
+            <point x="66" y="165"/>
+            <point x="119" y="194"/>
+            <point x="138" y="269"/>
+            <point x="116" y="280"/>
+            <point x="0" y="250"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <ocean/>
+        <name>Northern Iberia</name>
+        <boundary>
+            <point x="0" y="369"/>
+            <point x="110" y="346"/>
+            <point x="123" y="332"/>
+            <point x="116" y="280"/>
+            <point x="0" y="250"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <ocean/>
+        <name>Northern Celtica</name>
+        <boundary>
+            <point x="120" y="193"/>
+            <point x="170" y="95"/>
+            <point x="180" y="81"/>
+            <point x="68" y="101"/>
+            <point x="65" y="165"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <ocean/>
+        <name>Aquitania</name>
+        <city x="155" y="278"/>
+        <boundary>
+            <point x="124" y="331"/>
+            <point x="171" y="337"/>
+            <point x="201" y="316"/>
+            <point x="203" y="254"/>
+            <point x="137" y="270"/>
+            <point x="116" y="281"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <ocean/>
+        <name>Celtica</name>
+        <boundary>
+            <point x="139" y="270"/>
+            <point x="172" y="259"/>
+            <point x="206" y="254"/>
+            <point x="233" y="248"/>
+            <point x="246" y="187"/>
+            <point x="216" y="118"/>
+            <point x="168" y="97"/>
+            <point x="120" y="194"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <ocean/>
+        <name>Belgica</name>
+        <boundary>
+            <point x="246" y="186"/>
+            <point x="280" y="185"/>
+            <point x="287" y="101"/>
+            <point x="303" y="85"/>
+            <point x="304" y="76"/>
+            <point x="289" y="42"/>
+            <point x="253" y="37"/>
+            <point x="236" y="0"/>
+            <point x="225" y="0"/>
+            <point x="215" y="38"/>
+            <point x="180" y="80"/>
+            <point x="169" y="97"/>
+            <point x="219" y="118"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <ocean/>
+        <name>Techosages</name>
+        <boundary>
+            <city x="200" y="352"/>
+            <point x="205" y="417"/>
+            <point x="240" y="399"/>
+            <point x="238" y="381"/>
+            <point x="203" y="317"/>
+            <point x="172" y="336"/>
+            <point x="169" y="381"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <ocean/>
+        <name>Narbonenis</name>
+        <boundary>
+            <point x="237" y="379"/>
+            <point x="283" y="322"/>
+            <point x="234" y="248"/>
+            <point x="203" y="255"/>
+            <point x="202" y="316"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <ocean/>
+        <flood/>
+        <city x="267" y="269" site="1"/>
+        <agriculture value="3"/>
+        <name>Vocontii</name>
+        <boundary>
+            <point x="283" y="321"/>
+            <point x="326" y="308"/>
+            <point x="316" y="254"/>
+            <point x="238" y="230"/>
+            <point x="235" y="248"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <ocean/>
+        <name>Gallia</name>
+        <city x="328" y="250" site="1"/>
+        <boundary>
+            <point x="327" y="307"/>
+            <point x="360" y="300"/>
+            <point x="373" y="272"/>
+            <point x="332" y="222"/>
+            <point x="316" y="255"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <name>Arvernia</name>
+        <city x="269" y="202"/>
+        <boundary>
+            <point x="316" y="251"/>
+            <point x="330" y="222"/>
+            <point x="325" y="205"/>
+            <point x="308" y="186"/>
+            <point x="248" y="184"/>
+            <point x="239" y="230"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <name>Leuci</name>
+        <boundary>
+            <point x="306" y="185"/>
+            <point x="334" y="115"/>
+            <point x="327" y="103"/>
+            <point x="326" y="91"/>
+            <point x="305" y="85"/>
+            <point x="285" y="103"/>
+            <point x="281" y="185"/>
+        </boundary>
+    </mapregion>
+
+    <mapregion>
+        <land/>
+        <name>a</name>
+        <boundary>
+            <point x="327" y="88"/>
+            <point x="359" y="83"/>
+            <point x="344" y="0"/>
+            <point x="239" y="0"/>
+            <point x="254" y="38"/>
+            <point x="290" y="40"/>
+            <point x="304" y="75"/>
+            <point x="306" y="84"/>
+        </boundary>
+    </mapregion>
+</map>
