@@ -15,12 +15,14 @@ public class MapRegion {
         private boolean citySite;
         private boolean floodPlain;
         private boolean volcanic;
+        private MapPoint cityLocation;
+        private int agriculturalValue;
 
-        boolean isLand() {
+        boolean hasLand() {
             return land;
         }
 
-        boolean isWater() {
+        boolean hasWater() {
             return water;
         }
 
@@ -28,36 +30,67 @@ public class MapRegion {
             return citySite;
         }
 
-        boolean isFloodPlain() {
+        boolean hasFloodPlain() {
             return floodPlain;
         }
 
-        boolean isVolcanic() {
+        boolean hasVolcano() {
             return volcanic;
         }
 
-        boolean isOcean() {
+        boolean isAnOcean() {
             return !land && water;
+        }
+
+        MapPoint getCityLocation() {
+            return cityLocation;
+        }
+
+        void load(Element mapRegionElements) {
+            this.land = hasElementTag(mapRegionElements, "land");
+            this.water = hasElementTag(mapRegionElements, "water");
+            this.floodPlain = hasElementTag(mapRegionElements, "flood");
+            this.volcanic = hasElementTag(mapRegionElements, "volcano");
+
+            loadCity(mapRegionElements);
+        }
+
+        private void loadCity(Element mapRegionElements) {
+            NodeList city = mapRegionElements.getElementsByTagName("city");
+
+            if(city.getLength()>0) {
+                Element cityLocation = (Element) city.item(0);
+                float cityLocationX = Float.parseFloat(cityLocation.getAttribute("x"));
+                float cityLocationY = Float.parseFloat(cityLocation.getAttribute("y"));
+
+                this.cityLocation = new MapPoint(cityLocationX, cityLocationY);
+
+                if (cityLocation.hasAttribute("site")) {
+                    citySite = Boolean.parseBoolean(cityLocation.getAttribute("site"));
+                }
+            } else {
+                citySite = false;
+                cityLocation = new MapPoint(4000,4000); // keep null?
+            }
+        }
+
+        private boolean hasElementTag(Element mapRegionElements, String elementName) {
+            NodeList nodeList = mapRegionElements.getElementsByTagName(elementName);
+            return nodeList.getLength()>0;
         }
     }
 
     String name;
-    int agriculturalValue;
-    boolean land;
-    boolean water;
-    boolean citySite;
-    MapPoint cityLocation;
-    boolean floodPlain;
-    boolean volcanic;
+    MapRegionAttributes attributes;
 
     Vector<MapLine> edges;
 
     MapPoint upperLeft, lowerRight;
 
-    MapRegion(String name, MapPoint cityLocation) {
-        this.name = name;
-        this.cityLocation = cityLocation;
+    MapRegion() {
         edges = new Vector<>();
+
+        attributes = new MapRegionAttributes();
 
         //
         // Create the bounding box by making the top left (MAX_VALUE, MAX_VALUE)
@@ -66,32 +99,18 @@ public class MapRegion {
 
         upperLeft = new MapPoint(Integer.MAX_VALUE,Integer.MAX_VALUE);
         lowerRight = new MapPoint(Integer.MIN_VALUE, Integer.MIN_VALUE);
-
-        land=false;
-        water=false;
-        citySite=false;
-        floodPlain=false;
-        volcanic=false;
     }
 
-    void setLand(boolean value) {
-        land=value;
-    }
+    void loadMapRegion(Node regionNode) {
+        Element mapRegionElements = (Element) regionNode;
 
-    void setWater(boolean value) {
-        water=value;
-    }
+        name = mapRegionElements.getElementsByTagName("name").item(0).getChildNodes().item(0).getNodeValue();
+        Node boundary = mapRegionElements.getElementsByTagName("boundary").item(0);
+        NodeList pointList = ((Element)boundary).getElementsByTagName("point");
 
-    void setCitySite(boolean value) {
-        citySite=value;
-    }
+        attributes.load(mapRegionElements);
 
-    void setFloodPlain(boolean value) {
-        floodPlain=value;
-    }
-
-    void setAgriculturalValue(int value) {
-        agriculturalValue=value;
+        loadXMLPoints(pointList);
     }
 
     void addEdge(MapLine edge) {
@@ -248,6 +267,8 @@ public class MapRegion {
         }
 
         if(true) {
+            MapPoint cityLocation = attributes.getCityLocation();
+
             context.setFill(Color.BLUE);
             context.fillOval(cityLocation.x-2,cityLocation.y-2,25,25);
             context.setFill(new ImagePattern(cityImage));

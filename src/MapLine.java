@@ -45,9 +45,7 @@ public class MapLine {
     boolean intersectsWith(MapLine line) {
         MapPoint mapPoint = intersectsAt(line);
 
-        if(mapPoint == null) return false;
-
-        return line.pointOnLine(mapPoint) && pointOnLine(mapPoint);
+        return mapPoint != null && line.pointOnLine(mapPoint) && pointOnLine(mapPoint);
     }
 
     public MapPoint intersectsAt(MapLine line) {
