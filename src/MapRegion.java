@@ -253,7 +253,10 @@ public class MapRegion {
         return new MapPoint(x,y);
     }
 
-    void draw(GraphicsContext context, Image cityImage, Image asianTile) {
+    void draw(GraphicsContext context, ImageManager imageManager) {
+        Image cityImage = imageManager.get("City");
+        Image asianTile = imageManager.get("AsianTile");
+
         for (MapLine mapRegionLine : edges) {
             context.setLineWidth(3);
             context.setStroke(Color.BLACK);

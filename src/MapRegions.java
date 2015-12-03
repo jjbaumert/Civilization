@@ -63,9 +63,9 @@ public class MapRegions {
         return null;
     }
 
-    public void draw(GraphicsContext context, Image cityImage, Image asianTile) {
+    public void draw(GraphicsContext context, ImageManager imageManager) {
         for (MapRegion mapRegion : regions) {
-            mapRegion.draw(context, cityImage, asianTile);
+            mapRegion.draw(context, imageManager);
         }
     }
 }

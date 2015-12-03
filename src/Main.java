@@ -19,29 +19,29 @@ public class Main extends Application {
     private Label coordinateLabel;
     private Canvas regionCanvas;
     private MapRegion selectedRegion;
-    private Image mapImage;
-    private Image cityImage;
-    private Image asianTile;
+    public ImageManager imageManager;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("civ.fxml"));
         primaryStage.setTitle("Civilization");
 
+        imageManager = new ImageManager();
+        imageManager.loadImages("ImageDescriptions.xml");
+
+
         Scene scene = new Scene(root, 1500, 800);
         Canvas mapCanvas = (Canvas) scene.lookup("#mapCanvas");
 
         regionCanvas = (Canvas) scene.lookup("#regionCanvas");
         coordinateLabel = (Label) scene.lookup("#coordinates");
-        mapImage = new Image("map/CivilizationMap.jpg");
-        cityImage = new Image("map/city.png");
-        asianTile = new Image("tiles/asian.png");
 
         GraphicsContext mapCanvasContext = mapCanvas.getGraphicsContext2D();
-        mapCanvasContext.drawImage(mapImage, 0, 0, 1400, 700);
+        mapCanvasContext.drawImage(imageManager.get("Map"), 0, 0, 1400, 700);
 
         regionCanvas.setOnMouseClicked(event -> handleClick((float)event.getX(),(float)event.getY()));
         regionCanvas.setOnMouseMoved(event -> handleMove(event.getX(), event.getY()));
+
 
         readMapRegions();
 
@@ -73,7 +73,7 @@ public class Main extends Application {
         } else if(newSelectedRegion!=null) {
             regionContext.setStroke(Color.WHITE);
             selectedRegion = newSelectedRegion;
-            selectedRegion.draw(regionContext, cityImage, asianTile);
+            selectedRegion.draw(regionContext, imageManager);
             System.out.println(selectedRegion.name);
 
             drawInfoBox(regionContext);
@@ -127,6 +127,8 @@ public class Main extends Application {
         if(!featureDescription.equals("")) {
             regionContext.strokeText(featureDescription, boxOffsetX + 285, boxOffsetY + 235);
         }
+
+        Image mapImage = imageManager.get("Map");
 
         double aspectRatioX = mapImage.getWidth()/regionCanvas.getWidth();
         double aspectRatioY = mapImage.getHeight()/regionCanvas.getHeight();
