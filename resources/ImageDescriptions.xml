@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<images>
+    <image name="City" location="map/city.png"/>
+    <image name="Map" location="map/CivilizationMap.jpg"/>
+    <image name="AsianTile" location="tiles/asian.png"/>
+</images>
