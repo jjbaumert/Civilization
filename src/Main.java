@@ -73,61 +73,12 @@ public class Main extends Application {
             selectedRegion = newSelectedRegion;
             gameMap.highlightRegion(selectedRegion);
             System.out.println(selectedRegion.name);
-            drawInfoBox(regionContext);
+            gameMap.drawInfoBox(selectedRegion);
         }
 
         if(selectedRegion != null && !selectedRegion.pointInside(clickSpot)) {
             selectedRegion=null;
         }
-    }
-
-    private void drawInfoBox(GraphicsContext regionContext) {
-        MapPoint boxOffset = new MapPoint(900,0);
-
-        if((boxOffset.y+480)>700) {
-            boxOffset.y = 200;
-        }
-
-        regionContext.setLineWidth(1);
-        LinearGradient g
-                = LinearGradient.valueOf("from 0% 0% to 100% 100%, darkgrey  0% , white 50%,  darkgrey 100%");
-        regionContext.setFill(g);
-        regionContext.fillRoundRect(boxOffset.x, boxOffset.y, 500, 700, 30, 30);
-        regionContext.setLineWidth(3);
-        regionContext.setStroke(Color.DARKGRAY);
-        regionContext.strokeText(selectedRegion.name, boxOffset.x + 25, boxOffset.y + 20);
-        regionContext.setLineWidth(1);
-        regionContext.setStroke(Color.BLACK);
-        regionContext.strokeText(selectedRegion.name, boxOffset.x + 25, boxOffset.y + 20);
-
-        String featureDescription = "";
-
-        if(selectedRegion.attributes.hasCitySite()) {
-            featureDescription += "City Site";
-        }
-
-        if(selectedRegion.attributes.hasFloodPlain()) {
-            if(!featureDescription.equals("")) {
-                featureDescription += ", ";
-            }
-            featureDescription += "Flood Plain";
-        }
-
-        if(selectedRegion.attributes.hasVolcano()) {
-            if(!featureDescription.equals("")) {
-                featureDescription += ", ";
-            }
-            featureDescription += "Volcano";
-        }
-
-        if(!featureDescription.equals("")) {
-            regionContext.strokeText(featureDescription, boxOffset.x + 285, boxOffset.y + 235);
-        }
-
-        MapPoint mapInsetOffset = new MapPoint(boxOffset.x+285, boxOffset.y+15);
-        gameMap.drawMapInset(selectedRegion, mapInsetOffset);
-
-
     }
 
     private void readMapRegions() throws ParserConfigurationException, SAXException, IOException {
