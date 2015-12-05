@@ -1,18 +1,36 @@
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.LinearGradient;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 
 public class GameMap {
-    protected Canvas mapCanvas;
-    protected Canvas regionCanvas;
-    protected Image mapImage;
+    private Canvas mapCanvas;
+    private Canvas regionCanvas;
+    private Label coordinateLabel;
 
-    GameMap(Image mapImage, Canvas mapCanvas, Canvas regionCanvas) {
-        this.mapImage=mapImage;
-        this.mapCanvas=mapCanvas;
-        this.regionCanvas=regionCanvas;
+    private Image mapImage;
+
+    private MapRegion selectedRegion;
+    private MapRegions mapRegions;
+
+    GameMap(ImageManager imageManager, Scene scene) throws IOException, SAXException, ParserConfigurationException {
+        mapCanvas = (Canvas) scene.lookup("#mapCanvas");
+        regionCanvas = (Canvas) scene.lookup("#regionCanvas");
+        mapImage = imageManager.get("Map");
+
+        coordinateLabel = (Label) scene.lookup("#coordinates");
+        regionCanvas.setOnMouseClicked(event -> handleClick((float)event.getX(),(float)event.getY()));
+        regionCanvas.setOnMouseMoved(event -> handleMove(event.getX(), event.getY()));
+
+        mapRegions = new MapRegions();
+        mapRegions.loadRegions();
     }
 
     void draw() {
@@ -111,5 +129,37 @@ public class GameMap {
         regionContext.setStroke(Color.LIGHTGRAY);
         regionContext.setLineWidth(7);
         regionContext.strokeRoundRect(mapInsetOffset.x, mapInsetOffset.y, 203,203, 30,30);
+    }
+
+    private void handleMove(double x, double y) {
+        String coordinateString = "";
+
+        coordinateString += x + ", " + y;
+        coordinateLabel.setText(coordinateString);
+
+    }
+
+    void handleClick(float x, float y) {
+        MapPoint clickSpot = new MapPoint(x,y);
+
+        System.out.println("<point x=\""+(int)x+"\" y=\""+(int)y+"\"/>");
+
+        GraphicsContext regionContext = regionCanvas.getGraphicsContext2D();
+        regionContext.clearRect(0,0,1400,700);
+
+        MapRegion newSelectedRegion = mapRegions.getRegionByMapPoint(clickSpot);
+
+        if(newSelectedRegion==selectedRegion) {
+            selectedRegion = null;
+        } else if(newSelectedRegion!=null) {
+            selectedRegion = newSelectedRegion;
+            highlightRegion(selectedRegion);
+            System.out.println(selectedRegion.name);
+            drawInfoBox(selectedRegion);
+        }
+
+        if(selectedRegion != null && !selectedRegion.pointInside(clickSpot)) {
+            selectedRegion=null;
+        }
     }
 }
