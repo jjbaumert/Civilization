@@ -5,7 +5,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.LinearGradient;
 import javafx.stage.Stage;
@@ -20,6 +19,7 @@ public class Main extends Application {
     private Canvas regionCanvas;
     private MapRegion selectedRegion;
     public ImageManager imageManager;
+    public GameMap gameMap;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -36,12 +36,11 @@ public class Main extends Application {
         regionCanvas = (Canvas) scene.lookup("#regionCanvas");
         coordinateLabel = (Label) scene.lookup("#coordinates");
 
-        GraphicsContext mapCanvasContext = mapCanvas.getGraphicsContext2D();
-        mapCanvasContext.drawImage(imageManager.get("Map"), 0, 0, 1400, 700);
+        gameMap = new GameMap(imageManager.get("Map"), mapCanvas, regionCanvas);
+        gameMap.draw();
 
         regionCanvas.setOnMouseClicked(event -> handleClick((float)event.getX(),(float)event.getY()));
         regionCanvas.setOnMouseMoved(event -> handleMove(event.getX(), event.getY()));
-
 
         readMapRegions();
 
@@ -71,11 +70,9 @@ public class Main extends Application {
         if(newSelectedRegion==selectedRegion) {
             selectedRegion = null;
         } else if(newSelectedRegion!=null) {
-            regionContext.setStroke(Color.WHITE);
             selectedRegion = newSelectedRegion;
-            selectedRegion.draw(regionContext, imageManager);
+            gameMap.highlightRegion(selectedRegion);
             System.out.println(selectedRegion.name);
-
             drawInfoBox(regionContext);
         }
 
@@ -85,24 +82,23 @@ public class Main extends Application {
     }
 
     private void drawInfoBox(GraphicsContext regionContext) {
-        float boxOffsetX = 900;
-        float boxOffsetY = 0;
+        MapPoint boxOffset = new MapPoint(900,0);
 
-        if((boxOffsetY+480)>700) {
-            boxOffsetY = 200;
+        if((boxOffset.y+480)>700) {
+            boxOffset.y = 200;
         }
 
         regionContext.setLineWidth(1);
         LinearGradient g
                 = LinearGradient.valueOf("from 0% 0% to 100% 100%, darkgrey  0% , white 50%,  darkgrey 100%");
         regionContext.setFill(g);
-        regionContext.fillRoundRect(boxOffsetX, boxOffsetY, 500, 700, 30, 30);
+        regionContext.fillRoundRect(boxOffset.x, boxOffset.y, 500, 700, 30, 30);
         regionContext.setLineWidth(3);
         regionContext.setStroke(Color.DARKGRAY);
-        regionContext.strokeText(selectedRegion.name, boxOffsetX + 25, boxOffsetY + 20);
+        regionContext.strokeText(selectedRegion.name, boxOffset.x + 25, boxOffset.y + 20);
         regionContext.setLineWidth(1);
         regionContext.setStroke(Color.BLACK);
-        regionContext.strokeText(selectedRegion.name, boxOffsetX + 25, boxOffsetY + 20);
+        regionContext.strokeText(selectedRegion.name, boxOffset.x + 25, boxOffset.y + 20);
 
         String featureDescription = "";
 
@@ -125,34 +121,13 @@ public class Main extends Application {
         }
 
         if(!featureDescription.equals("")) {
-            regionContext.strokeText(featureDescription, boxOffsetX + 285, boxOffsetY + 235);
+            regionContext.strokeText(featureDescription, boxOffset.x + 285, boxOffset.y + 235);
         }
 
-        Image mapImage = imageManager.get("Map");
+        MapPoint mapInsetOffset = new MapPoint(boxOffset.x+285, boxOffset.y+15);
+        gameMap.drawMapInset(selectedRegion, mapInsetOffset);
 
-        double aspectRatioX = mapImage.getWidth()/regionCanvas.getWidth();
-        double aspectRatioY = mapImage.getHeight()/regionCanvas.getHeight();
-        double imageStartX = Double.max(0,(selectedRegion.upperLeft.x-20)*aspectRatioX);
-        double imageStartY = Double.max(0,(selectedRegion.upperLeft.y-20)*aspectRatioY);
-        double imageWidth = ((selectedRegion.lowerRight.x-selectedRegion.upperLeft.x)+40)*aspectRatioX;
-        double imageHeight = ((selectedRegion.lowerRight.y-selectedRegion.upperLeft.y)+40)*aspectRatioY;
 
-        // Make square with the maximum dimension
-        imageHeight = imageWidth = Double.max(imageHeight, imageWidth);
-
-        regionContext.drawImage(mapImage,
-                imageStartX,
-                imageStartY,
-                imageWidth,
-                imageHeight,
-                boxOffsetX + 285,
-                boxOffsetY + 15,
-                200,
-                200);
-
-        regionContext.setStroke(Color.LIGHTGRAY);
-        regionContext.setLineWidth(7);
-        regionContext.strokeRoundRect(boxOffsetX+284, boxOffsetY+14, 203,203, 30,30);
     }
 
     private void readMapRegions() throws ParserConfigurationException, SAXException, IOException {
