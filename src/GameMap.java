@@ -25,8 +25,8 @@ public class GameMap {
         regionCanvas = (Canvas) scene.lookup("#regionCanvas");
         coordinateLabel = (Label) scene.lookup("#coordinates");
 
-        imageManager = new ImageManager();
-        imageManager.loadImages("ImageDescriptions.xml");
+        imageManager = new ImageManager("ImageDescriptions.xml");
+        imageManager.loadImages();
 
         regionCanvas.setOnMouseClicked(event -> handleClick((float)event.getX(),(float)event.getY()));
         regionCanvas.setOnMouseMoved(event -> handleMove(event.getX(), event.getY()));
@@ -130,8 +130,8 @@ public class GameMap {
 
         imageUpperLeft.x = Float.max(0, imageUpperLeft.x-20);
         imageUpperLeft.y = Float.max(0, imageUpperLeft.y-10);
-        imageLowerRight.x = Float.min((float)mapCanvas.getWidth(), imageLowerRight.x+20);
-        imageLowerRight.y = Float.min((float)mapCanvas.getHeight(), imageLowerRight.y+10);
+        imageLowerRight.x = Float.min((float) mapCanvas.getWidth(), imageLowerRight.x+20);
+        imageLowerRight.y = Float.min((float) mapCanvas.getHeight(), imageLowerRight.y+10);
 
         float imageHeight = imageLowerRight.y-imageUpperLeft.y;
         float imageWidth = imageLowerRight.x-imageUpperLeft.x;
