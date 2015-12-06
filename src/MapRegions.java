@@ -15,35 +15,17 @@ import java.util.Vector;
 public class MapRegions {
     final String MAP_FILE_NAME = "map/MapRegions.xml";
 
+    XMLDataFile mapFile;
+
     Vector<MapRegion> regions;
 
-    public MapRegions() {
+    public MapRegions() throws ParserConfigurationException, SAXException, IOException {
         regions = new Vector<>();
+        mapFile = new XMLDataFile(MAP_FILE_NAME);
     }
 
     public void loadRegions() throws ParserConfigurationException, SAXException, IOException {
-        InputStream mapFile = getMapFile();
-        Document mapDocument = getXMLDocument(mapFile);
-
-        loadMapRegions(mapDocument);
-    }
-
-    private InputStream getMapFile() {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        return classLoader.getResourceAsStream(MAP_FILE_NAME);
-    }
-
-    private Document getXMLDocument(InputStream mapFile) throws IOException, SAXException, ParserConfigurationException {
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(mapFile);
-        doc.getDocumentElement().normalize();
-
-        return doc;
-    }
-
-    private void loadMapRegions(Document doc) {
-        NodeList mapRegionList = doc.getElementsByTagName("mapregion");
+        NodeList mapRegionList = mapFile.getResourceItems("mapregion");
 
         for(int nodeIndex=0; nodeIndex<mapRegionList.getLength(); nodeIndex++) {
             Node mapRegion = mapRegionList.item(nodeIndex);

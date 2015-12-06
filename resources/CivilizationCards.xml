@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cards>
+    <card>
+        <name>Pottery</name>
+        <cost>45</cost>
+        <type>Craft</type>
+        <description>With Grain, reduces the affect of FAMINE.</description>
+        <credit value="10">Craft</credit>
+        <credit value="10">Democracy</credit>
+        <credit value="10">Monotheism</credit>
+    </card>
+    <card>
+        <name>Cloth Making</name>
+        <cost>45</cost>
+        <type>Craft</type>
+        <description>Ships allowed and extra move.</description>
+        <credit value="10">Craft</credit>
+        <credit value="10">Democracy</credit>
+        <credit value="10">Monotheism</credit>
+    </card>
+    <card>
+        <name>Metalworking</name>
+        <cost>80</cost>
+        <type>Craft</type>
+        <description>Gives an Advantage in Battle</description>
+        <credit value="10">Craft</credit>
+        <credit value="10">Democracy</credit>
+        <credit value="10">Monotheism</credit>
+        <credit value="20">Military</credit>
+    </card>
+    <card>
+        <name>Agriculture</name>
+        <cost>110</cost>
+        <type>Craft</type>
+        <description>Permits an increase in population.</description>
+        <credit value="10">Craft</credit>
+        <credit value="10">Democracy</credit>
+        <credit value="10">Monotheism</credit>
+    </card>
+    <card>
+        <name>Roadbuilding</name>
+        <cost>140</cost>
+        <type>Craft</type>
+        <description>Allows extra movement. Aggravates the effects of EPIDEMIC, CIVIL DISORDER and ICONOCLASM & HERESY.</description>
+        <credit value="10">Craft</credit>
+        <credit value="10">Democracy</credit>
+        <credit value="10">Monotheism</credit>
+    </card>
+    <card>
+        <name>Mining</name>
+        <cost>180</cost>
+        <type>Craft</type>
+        <description>Increases value of sets of Iron, Bronze, Silver, Gems, or Gold. Aggravates the effects of SLAVE REVOLT.</description>
+        <credit value="10">Craft</credit>
+        <credit value="10">Democracy</credit>
+        <credit value="10">Monotheism</credit>
+    </card>
+    <card>
+        <name>Engineering</name>
+        <cost>140</cost>
+        <type>Craft</type>
+        <type>Science</type>
+        <description>Strengthens city defences/assaults and reduces the effects of FLOOD and EARTHQUAKE.</description>
+        <credit value="10">Craft</credit>
+        <credit value="20">Science</credit>
+        <credit value="10">Democracy</credit>
+        <credit value="10">Monotheism</credit>
+        <credit value="20">Philosophy</credit>
+        <credit value="20">Theology</credit>
+    </card>
+    <card>
+        <name>Astronomy</name>
+        <cost>80</cost>
+        <type>Science</type>
+        <description>Permits voyages across open sea.</description>
+        <credit value="20">Science</credit>
+        <credit value="20">Philosophy</credit>
+        <credit value="20">Theology</credit>
+    </card>
+    <card>
+        <name>Coinage</name>
+        <cost>110</cost>
+        <type>Science</type>
+        <description>Allows for changes in taxation.</description>
+        <credit value="20">Science</credit>
+        <credit value="20">Philosophy</credit>
+        <credit value="20">Theology</credit>
+    </card>
+    <card>
+        <name>Medicine</name>
+        <cost>140</cost>
+        <type>Science</type>
+        <description>Reduces the effects of EPIDEMIC.</description>
+        <credit value="20">Science</credit>
+        <credit value="20">Philosophy</credit>
+        <credit value="20">Theology</credit>
+    </card>
+    <card>
+        <name>Mathmatics</name>
+        <cost>230</cost>
+        <type>Science</type>
+        <description>Counts 25 towards PHILOSOPHY and THEOLOGY</description>
+        <credit value="20">Science</credit>
+        <credit value="25">Philosophy</credit>
+        <credit value="25">Theology</credit>
+    </card>
+    <card>
+        <name>Drama & Poetry</name>
+        <cost>60</cost>
+        <type>Arts</type>
+        <description>Reduces the effects of CIVIL WAR and CIVIL DISORDER.</description>
+        <credit value="5">Arts</credit>
+        <credit value="10">Democracy</credit>
+        <credit value="10">Enlightenment</credit>
+        <credit value="20">Literacy</credit>
+    </card>
+    <card>
+        <name>Music</name>
+        <cost>60</cost>
+        <type>Arts</type>
+        <description>Reduces the effects of CIVIL WAR and CIVIL DISORDER.</description>
+        <credit value="5">Arts</credit>
+        <credit value="10">Democracy</credit>
+        <credit value="10">Enlightenment</credit>
+        <credit value="20">Mathematics</credit>
+        <credit value="20">Philosophy</credit>
+    </card>
+    <card>
+        <name>Architecture</name>
+        <cost>120</cost>
+        <type>Arts</type>
+        <description>Reduces the effects of CIVIL WAR and CIVIL DISORDER.</description>
+        <credit value="5">Arts</credit>
+        <credit value="10">Democracy</credit>
+        <credit value="10">Enlightenment</credit>
+        <credit value="15">Law</credit>
+    </card>
+    <card>
+        <name>Literacy</name>
+        <cost>110</cost>
+        <type>Arts</type>
+        <type>Civic</type>
+        <description>Counts 25 towards LAW, DEMOCRACY, and PHILOSOPHY.</description>
+        <credit value="5">Arts</credit>
+        <credit value="10">Enlightenment</credit>
+        <credit value="25">Law</credit>
+        <credit value="25">Democracy</credit>
+        <credit value="25">Philosophy</credit>
+    </card>
+    <card>
+        <name>Law</name>
+        <cost>170</cost>
+        <type>Civic</type>
+        <description>Required for DEMOCRACY and PHILOSOPHY. Reduces the effects of CIVIL DISORDER and ICONOCLASM & HERESY.</description>
+    </card>
+    <card>
+        <name>Democracy</name>
+        <cost>200</cost>
+        <type>Civic</type>
+        <prerequisite>Law</prerequisite>
+        <description>Cities never revolt.</description>
+    </card>
+    <card>
+        <name>Military</name>
+        <cost>180</cost>
+        <type>Civic</type>
+        <description>Allows holder to move last, Aggravates effects of CIVIL WAR and CIVIL DISORDER.</description>
+    </card>
+    <card>
+        <name>Philosophy</name>
+        <cost>240</cost>
+        <type>Civic</type>
+        <prerequisite>Law</prerequisite>
+        <description>Reduces the effects of ICONOCLASM & HERESY and modifies CIVIL WAR.</description>
+    </card>
+    <card>
+        <name>Mysticism</name>
+        <cost>50</cost>
+        <type>Religion</type>
+        <type>Arts</type>
+        <description>Reduces the effect of SUPERSTITION.</description>
+        <credit value="5">Arts</credit>
+        <credit value="15">Religion</credit>
+    </card>
+    <card>
+        <name>Deism</name>
+        <cost>80</cost>
+        <type>Religion</type>
+        <description>Reduces the effects of SUPERSTITION.</description>
+        <credit value="15">Religion</credit>
+    </card>
+    <card>
+        <name>Enlightenment</name>
+        <cost>150</cost>
+        <type>Religion</type>
+        <description>Reduces the effects of SLAVE REVOLT. Nullifies the effects of SUPERSTUTION.</description>
+        <credit value="15">Monotheism</credit>
+        <credit value="15">Theology</credit>
+    </card>
+    <card>
+        <name>Monotheism</name>
+        <cost>220</cost>
+        <type>Religion</type>
+        <prerequisite>Enlightenment</prerequisite>
+        <description>Allows conversion of one adjacent area each turn. Aggravates the effects of ICONOCLASM & HERESY.</description>
+    </card>
+    <card>
+        <name>Theology</name>
+        <cost>250</cost>
+        <type>Religion</type>
+        <prerequisite>Enlightenment</prerequisite>
+        <description>Nullifies Monotheism. Reduces the effects of ICONOCLASM & HERESY.</description>
+    </card>
+</cards>
