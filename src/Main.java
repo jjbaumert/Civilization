@@ -5,7 +5,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    public ImageManager imageManager;
     public GameMap gameMap;
 
     @Override
@@ -13,17 +12,13 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("civ.fxml"));
         primaryStage.setTitle("Civilization");
 
-        imageManager = new ImageManager();
-        imageManager.loadImages("ImageDescriptions.xml");
-
         Scene scene = new Scene(root, 1500, 800);
 
-        gameMap = new GameMap(imageManager, scene);
+        gameMap = new GameMap(scene);
         gameMap.draw();
 
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 
     public static void main(String[] args) {
