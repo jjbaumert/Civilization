@@ -42,7 +42,7 @@
         <name>Roadbuilding</name>
         <cost>140</cost>
         <type>Craft</type>
-        <description>Allows extra movement. Aggravates the effects of EPIDEMIC, CIVIL DISORDER and ICONOCLASM & HERESY.</description>
+        <description>Allows extra movement. Aggravates the effects of EPIDEMIC, CIVIL DISORDER and ICONOCLASM &amp; HERESY.</description>
         <credit value="10">Craft</credit>
         <credit value="10">Democracy</credit>
         <credit value="10">Monotheism</credit>
@@ -106,7 +106,7 @@
         <credit value="25">Theology</credit>
     </card>
     <card>
-        <name>Drama & Poetry</name>
+        <name>Drama &amp; Poetry</name>
         <cost>60</cost>
         <type>Arts</type>
         <description>Reduces the effects of CIVIL WAR and CIVIL DISORDER.</description>
@@ -152,7 +152,7 @@
         <name>Law</name>
         <cost>170</cost>
         <type>Civic</type>
-        <description>Required for DEMOCRACY and PHILOSOPHY. Reduces the effects of CIVIL DISORDER and ICONOCLASM & HERESY.</description>
+        <description>Required for DEMOCRACY and PHILOSOPHY. Reduces the effects of CIVIL DISORDER and ICONOCLASM &amp; HERESY.</description>
     </card>
     <card>
         <name>Democracy</name>
@@ -172,7 +172,7 @@
         <cost>240</cost>
         <type>Civic</type>
         <prerequisite>Law</prerequisite>
-        <description>Reduces the effects of ICONOCLASM & HERESY and modifies CIVIL WAR.</description>
+        <description>Reduces the effects of ICONOCLASM &amp; HERESY and modifies CIVIL WAR.</description>
     </card>
     <card>
         <name>Mysticism</name>
@@ -203,13 +203,13 @@
         <cost>220</cost>
         <type>Religion</type>
         <prerequisite>Enlightenment</prerequisite>
-        <description>Allows conversion of one adjacent area each turn. Aggravates the effects of ICONOCLASM & HERESY.</description>
+        <description>Allows conversion of one adjacent area each turn. Aggravates the effects of ICONOCLASM &amp; HERESY.</description>
     </card>
     <card>
         <name>Theology</name>
         <cost>250</cost>
         <type>Religion</type>
         <prerequisite>Enlightenment</prerequisite>
-        <description>Nullifies Monotheism. Reduces the effects of ICONOCLASM & HERESY.</description>
+        <description>Nullifies Monotheism. Reduces the effects of ICONOCLASM &amp; HERESY.</description>
     </card>
 </cards>
