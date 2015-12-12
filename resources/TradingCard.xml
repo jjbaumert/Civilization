@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tradingcards>
+    <card number="1" name="Hides" max="7"/>
+    <card number="1" name="Ochre" max="7"/>
+    <card number="2" name="Iron" max="8"/>
+    <card number="2" name="Papyrus" max="7"/>
+    <card number="3" name="Salt" max="9"/>
+    <card number="3" name="Timber" max="8"/>
+    <card number="4" name="Grain" max="8"/>
+    <card number="4" name="Oil" max="7"/>
+    <card number="5" name="Cloth" max="7"/>
+    <card number="5" name="Wine" max="6"/>
+    <card number="6" name="Bronze" max="6"/>
+    <card number="6" name="Silver" max="5"/>
+    <card number="7" name="Spice" max="6"/>
+    <card number="7" name="Resin" max="5"/>
+    <card number="8" name="Gems" max="5"/>
+    <card number="8" name="Dye" max="4"/>
+    <card number="9" name="Gold" max="5"/>
+    <card number="9" name="Ivory" max="4"/>
+
+    <calamity number="2" name="Volcano or Earthquake" tradeable="no"/>
+    <calamity number="2" name="Treachery" tradeable="yes"/>
+    <calamity number="3" name="Famine" tradeable="no"/>
+    <calamity number="3" name="Superstition" tradeable="yes"/>
+    <calamity number="4" name="Civil War" tradeable="no"/>
+    <calamity number="4" name="Slave Revolt" tradeable="yes"/>
+    <calamity number="5" name="Flood" tradeable="no"/>
+    <calamity number="5" name="Barbarian Hordes" tradeable="yes"/>
+    <calamity number="6" name="Epidemic" tradeable="yes"/>
+    <calamity number="7" name="Civil Disorder" tradeable="yes"/>
+    <calamity number="8" name="Iconoclasm &amp; Heresy" tradeable="yes"/>
+    <calamity number="9" name="Piracy" tradeable="yes"/>
+</tradingcards>
