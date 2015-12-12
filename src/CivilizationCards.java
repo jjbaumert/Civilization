@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CivilizationCards extends XMLDataFile {
-    protected Map<String, CivilizationCard> cards;
+    protected Map<String, CivilizationCardDescription> cards;
 
     CivilizationCards() throws ParserConfigurationException, SAXException, IOException {
         super("CivilizationCards.xml");
@@ -21,7 +21,7 @@ public class CivilizationCards extends XMLDataFile {
         for(int nodeIndex=0; nodeIndex<cardDescriptions.getLength(); nodeIndex++) {
             Node cardNode = cardDescriptions.item(nodeIndex);
 
-            CivilizationCard civilizationCard = new CivilizationCard();
+            CivilizationCardDescription civilizationCard = new CivilizationCardDescription();
             civilizationCard.loadCivilizationCard(cardNode);
             cards.put(civilizationCard.getName(), civilizationCard);
 
@@ -29,15 +29,15 @@ public class CivilizationCards extends XMLDataFile {
         }
     }
 
-    public int getCost(String cardName, Map<String, CivilizationCard> cards) {
+    public int getCost(String cardName, Map<String, CivilizationCardDescription> cards) {
         return 0;
     }
 
-    public boolean checkPrerequisites(String cardName, Map<String, CivilizationCard> cards) {
+    public boolean checkPrerequisites(String cardName, Map<String, CivilizationCardDescription> cards) {
         return false;
     }
 
-    public CivilizationCard getCard(String cardName) {
+    public CivilizationCardDescription getCard(String cardName) {
         if(cards.containsKey(cardName)) {
             return cards.get(cardName);
         }

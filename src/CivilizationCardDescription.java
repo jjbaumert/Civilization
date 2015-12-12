@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class CivilizationCard {
+public class CivilizationCardDescription {
     private String name;
     private int cost;
     private String description;
@@ -16,7 +16,7 @@ public class CivilizationCard {
     private Set<String> prerequisites;
     private Set<String> types;
 
-    CivilizationCard() {
+    CivilizationCardDescription() {
         credits = new HashMap<>();
         prerequisites = new HashSet<>();
         types = new HashSet<>();
@@ -94,10 +94,10 @@ public class CivilizationCard {
         return cost;
     }
 
-    public int getCost(Set<CivilizationCard> cards) {
+    public int getCost(Set<CivilizationCardDescription> cards) {
         int startingCost = getCost();
 
-        for(CivilizationCard card: cards) {
+        for(CivilizationCardDescription card: cards) {
             startingCost -= card.getCredit(card.getName());
 
             for(String type: types) {
@@ -119,7 +119,7 @@ public class CivilizationCard {
         return 0;
     }
 
-    public boolean checkPrerequisites(Map<String, CivilizationCard> cards) {
+    public boolean checkPrerequisites(Map<String, CivilizationCardDescription> cards) {
         return false;
     }
 
