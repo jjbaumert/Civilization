@@ -51,7 +51,7 @@ public class TradingCards extends XMLDataFile {
         for (int nodeIndex = 0; nodeIndex < cardDescriptions.getLength(); nodeIndex++) {
             Node cardNode = cardDescriptions.item(nodeIndex);
 
-            TradingCardDescription tradingCard = new Calamity();
+            TradingCardDescription tradingCard = new CalamityDescription();
             tradingCard.loadTradingCard(cardNode);
             calamityDescriptions.put(tradingCard.getName(), tradingCard);
             calamitiesByValue.get(tradingCard.getNumber()).add(tradingCard);

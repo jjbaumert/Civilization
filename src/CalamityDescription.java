@@ -1,7 +1,7 @@
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-public class Calamity extends TradingCardDescription {
+public class CalamityDescription extends TradingCardDescription {
     protected boolean tradeable;
 
     @Override
