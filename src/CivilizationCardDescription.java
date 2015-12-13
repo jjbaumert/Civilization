@@ -22,6 +22,39 @@ public class CivilizationCardDescription {
         types = new HashSet<>();
     }
 
+    public boolean isReligion() { return types.contains("Religion"); }
+    public boolean isCivic() { return types.contains("Civic"); }
+    public boolean isScience() { return types.contains("Science"); }
+    public boolean isCraft() { return types.contains("Craft"); }
+    public boolean isArt() { return types.contains("Arts"); }
+
+    Set<String> getPrerequisites() {
+        return prerequisites;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void loadCivilizationCard(Node cardNode) {
+        Element cardElements = (Element) cardNode;
+
+        loadName(cardElements);
+        loadDescription(cardElements);
+        loadCost(cardElements);
+        loadCredits(cardElements);
+        loadPrerequisites(cardElements);
+        loadType(cardElements);
+    }
+
     private void loadName(Element cardNode) {
         name = cardNode.getElementsByTagName("name").item(0).getChildNodes().item(0).getNodeValue();
     }
@@ -71,34 +104,11 @@ public class CivilizationCardDescription {
         }
     }
 
-    public void loadCivilizationCard(Node cardNode) {
-        Element cardElements = (Element) cardNode;
-
-        loadName(cardElements);
-        loadDescription(cardElements);
-        loadCost(cardElements);
-        loadCredits(cardElements);
-        loadPrerequisites(cardElements);
-        loadType(cardElements);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getCost() {
-        return cost;
-    }
-
     public int getCost(Set<CivilizationCardDescription> cards) {
         int startingCost = getCost();
 
         for(CivilizationCardDescription card: cards) {
-            startingCost -= card.getCredit(card.getName());
+            startingCost -= card.getCredit(getName());
 
             for(String type: types) {
                 startingCost -= card.getCredit(type);
@@ -119,17 +129,20 @@ public class CivilizationCardDescription {
         return 0;
     }
 
-    public boolean checkPrerequisites(Map<String, CivilizationCardDescription> cards) {
-        return false;
-    }
+    public boolean checkPrerequisites(Set<CivilizationCardDescription> currentCards) {
+        for(String prerequisiteName: prerequisites) {
+            boolean found = false;
 
-    public boolean isReligion() { return types.contains("Religion"); }
-    public boolean isCivic() { return types.contains("Civic"); }
-    public boolean isScience() { return types.contains("Science"); }
-    public boolean isCraft() { return types.contains("Craft"); }
-    public boolean isArt() { return types.contains("Arts"); }
+            for(CivilizationCardDescription card: currentCards) {
+                if(card.getName().equals(prerequisiteName)) {
+                    found = true;
+                }
+            }
 
-    Set<String> getPrerequisites() {
-        return prerequisites;
+            if(!found) {
+                return false;
+            }
+        }
+        return true;
     }
 }
