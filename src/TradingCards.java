@@ -107,7 +107,7 @@ public class TradingCards extends XMLDataFile {
         return cardDraw;
     }
 
-    public void returnCards(Vector<TradingCardDescription> cardList) {
+    public void returnCards(ArrayList<TradingCardDescription> cardList) {
         Collections.shuffle(cardList);
 
         for(TradingCardDescription card: cardList) {

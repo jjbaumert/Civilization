@@ -2,9 +2,6 @@ import org.junit.Test;
 
 import java.util.*;
 
-import java.util.Collections.*;
-import org.junit.Assert.*;
-
 import static org.junit.Assert.assertTrue;
 
 public class TradingCardsTest {
@@ -78,6 +75,37 @@ public class TradingCardsTest {
 
     @Test
     public void testReturnCards() throws Exception {
-        assertTrue(false);
+        TradingCards tradingCards = new TradingCards();
+        tradingCards.loadCardDescriptions();
+
+        ArrayList<TradingCardDescription> pretendReturn = new ArrayList<>();
+
+        pretendReturn.add(tradingCards.tradingCardDescriptions.get("Ochre"));
+        pretendReturn.add(tradingCards.tradingCardDescriptions.get("Iron"));
+        pretendReturn.add(tradingCards.tradingCardDescriptions.get("Iron"));
+        pretendReturn.add(tradingCards.tradingCardDescriptions.get("Salt"));
+        pretendReturn.add(tradingCards.tradingCardDescriptions.get("Grain"));
+        pretendReturn.add(tradingCards.tradingCardDescriptions.get("Cloth"));
+        pretendReturn.add(tradingCards.tradingCardDescriptions.get("Silver"));
+        pretendReturn.add(tradingCards.tradingCardDescriptions.get("Resin"));
+        pretendReturn.add(tradingCards.tradingCardDescriptions.get("Gems"));
+        pretendReturn.add(tradingCards.tradingCardDescriptions.get("Gold"));
+
+        tradingCards.returnCards(pretendReturn);
+
+        ArrayList<TradingCardDescription> tradingCardDraw = tradingCards.drawCards(9);
+        assertTrue(tradingCardDraw.size() == 9);
+        assertTrue(tradingCardDraw.get(0).getName().equals("Ochre"));
+        assertTrue(tradingCardDraw.get(1).getName().equals("Iron"));
+        assertTrue(tradingCardDraw.get(2).getName().equals("Salt"));
+        assertTrue(tradingCardDraw.get(3).getName().equals("Grain"));
+        assertTrue(tradingCardDraw.get(4).getName().equals("Cloth"));
+        assertTrue(tradingCardDraw.get(5).getName().equals("Silver"));
+        assertTrue(tradingCardDraw.get(6).getName().equals("Resin"));
+        assertTrue(tradingCardDraw.get(7).getName().equals("Gems"));
+        assertTrue(tradingCardDraw.get(8).getName().equals("Gold"));
+        tradingCardDraw = tradingCards.drawCards(9);
+        assertTrue(tradingCardDraw.size() == 1);
+        assertTrue(tradingCardDraw.get(0).getName().equals("Iron"));
     }
 }
