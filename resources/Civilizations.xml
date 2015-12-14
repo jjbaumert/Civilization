@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<civilizations>
+    <civilization name="Africa" color="#663300">
+        <age>
+            <stone start="1"/>
+            <earlybronze start="5"/>
+            <latebronze start="8"/>
+            <earlyiron start="11"/>
+            <lateiron start="14"/>
+
+            <needed point="14" value="1300"/>
+            <needed point="15" value="1600"/>
+        </age>
+        <starting>
+            <territory name="Cirta"/>
+            <territory name="Tunisia"/>
+            <territory name="Sahara"/>
+            <territory name="Tripolitania"/>
+        </starting>
+    </civilization>
+
+    <civilization name="Italy" color="#cc0000">
+        <age>
+            <stone start="1"/>
+            <earlybronze start="5"/>
+            <latebronze start="8"/>
+            <earlyiron start="11"/>
+            <lateiron start="14"/>
+
+            <needed point="14" value="1400"/>
+            <needed point="15" value="1700"/>
+        </age>
+        <starting>
+            <territory name="Etruria"/>
+            <territory name="Cissipina"/>
+            <territory name="Pannonia"/>
+        </starting>
+    </civilization>
+
+    <civilization name="Illyria" color="#ffff00">
+        <age>
+            <stone start="1"/>
+            <earlybronze start="6"/>
+            <latebronze start="8"/>
+            <earlyiron start="11"/>
+            <lateiron start="13"/>
+
+            <needed point="13" value="1200"/>
+            <needed point="14" value="1500"/>
+            <needed point="15" value="1800"/>
+        </age>
+        <starting>
+            <territory name="Germany"/>
+            <territory name="Sudeten"/>
+        </starting>
+    </civilization>
+
+    <civilization name="Thrace" color="#006600">
+        <age>
+            <stone start="1"/>
+            <earlybronze start="6"/>
+            <latebronze start="9"/>
+            <earlyiron start="11"/>
+            <lateiron start="13"/>
+
+            <needed point="13" value="1200"/>
+            <needed point="14" value="1400"/>
+            <needed point="15" value="1700"/>
+        </age>
+        <starting>
+            <territory name="Scythia"/>
+        </starting>
+    </civilization>
+
+    <civilization name="Crete" color="#009900">
+        <age>
+            <stone start="1"/>
+            <earlybronze start="5"/>
+            <latebronze start="9"/>
+            <earlyiron start="11"/>
+            <lateiron start="14"/>
+
+            <needed point="14" value="1300"/>
+            <needed point="15" value="1600"/>
+        </age>
+        <starting>
+            <territory name="Phaesios"/>
+            <territory name="Knossus"/>
+        </starting>
+    </civilization>
+
+    <civilization name="Asia" color="#ff6600">
+        <age>
+            <stone start="1"/>
+            <earlybronze start="5"/>
+            <latebronze start="8"/>
+            <earlyiron start="10"/>
+            <lateiron start="13"/>
+
+            <needed point="13" value="1200"/>
+            <needed point="14" value="1500"/>
+            <needed point="15" value="1800"/>
+        </age>
+        <starting>
+            <territory name="Kuban"/>
+            <territory name="Mikop"/>
+        </starting>
+    </civilization>
+
+    <civilization name="Assyria" color="#3366ff">
+        <age>
+            <stone start="1"/>
+            <earlybronze start="5"/>
+            <latebronze start="8"/>
+            <earlyiron start="10"/>
+            <lateiron start="14"/>
+
+            <needed point="14" value="1500"/>
+            <needed point="15" value="1800"/>
+        </age>
+        <starting>
+            <territory name="Naichik"/>
+            <territory name="Caucasus"/>
+        </starting>
+    </civilization>
+
+    <civilization name="Babylon" color="#ccffff">
+        <age>
+            <stone start="1"/>
+            <earlybronze start="4"/>
+            <latebronze start="7"/>
+            <earlyiron start="10"/>
+            <lateiron start="14"/>
+
+            <needed point="14" value="1600"/>
+            <needed point="15" value="1900"/>
+        </age>
+        <starting>
+            <territory name="Media"/>
+            <territory name="Parthia"/>
+            <territory name="Susa"/>
+        </starting>
+    </civilization>
+
+    <civilization name="Egypt" color="#ffffcc">
+        <age>
+            <stone start="1"/>
+            <earlybronze start="4"/>
+            <latebronze start="7"/>
+            <earlyiron start="10"/>
+            <lateiron start="13"/>
+
+            <needed point="13" value="1300"/>
+            <needed point="14" value="1600"/>
+            <needed point="15" value="1900"/>
+        </age>
+        <starting>
+            <territory name="Jalo"/>
+            <territory name="Siwa"/>
+            <territory name="Upper Egypt"/>
+            <territory name="Buhen"/>
+            <territory name="Thebes"/>
+            <territory name="Nubia"/>
+        </starting>
+    </civilization>
+</civilizations>

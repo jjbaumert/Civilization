@@ -1,3 +1,5 @@
+package GameState;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -11,7 +13,7 @@ import java.io.InputStream;
 public class XMLDataFile {
     private Document document;
 
-    XMLDataFile(String resourceName) throws IOException, SAXException, ParserConfigurationException {
+    public XMLDataFile(String resourceName) throws IOException, SAXException, ParserConfigurationException {
         load(resourceName);
     }
 
@@ -32,7 +34,7 @@ public class XMLDataFile {
         getDocument(resourceStream);
     }
 
-    NodeList getResourceItems(String itemName) {
+    public NodeList getResourceItems(String itemName) {
         return document.getElementsByTagName(itemName);
     }
 }
