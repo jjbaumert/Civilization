@@ -11,7 +11,7 @@ public class Cities {
     class CityAlreadyMarked extends Exception {}
     class CityNotPlaced extends Exception {}
 
-    private Map<String, City> builtCities;
+    private Map<String, String> builtCities;
     private Set<String> markedForReduction;
     private Set<String> markedForBuilding;
 
@@ -21,7 +21,7 @@ public class Cities {
         markedForReduction = new HashSet<>();
     }
 
-    Collection<City> getBuiltCities() { return builtCities.values(); }
+    Collection<String> getBuiltCities() { return builtCities.values(); }
 
     int numberOfCityTokensAvailable() {
         return MAXIMUM_CITIES-numberOfCitiesMarkedOrPlaced();
@@ -65,7 +65,7 @@ public class Cities {
     }
 
     void markForBuilding(Set<String> regionNames) throws CityAlreadyBuilt, CityRegionDuplicate, CityTokensNotAvailable {
-        if((9- numberOfCitiesMarkedOrPlaced())<regionNames.size()) {
+        if((9-numberOfCitiesMarkedOrPlaced())<regionNames.size()) {
             throw new CityTokensNotAvailable();
         }
 
@@ -84,15 +84,12 @@ public class Cities {
         markedForBuilding.addAll(regionNames);
     }
 
-    Collection<City> buildMarkedCities() throws Cities.CityTokensNotAvailable {
-        Collection<City> newCities = new HashSet<>();
+    Collection<String> buildMarkedCities() throws Cities.CityTokensNotAvailable {
+        Collection<String> newCities = new HashSet<>();
 
         for(String regionName: markedForBuilding) {
-            City city = new City();
-            city.setRegion(regionName);
-
-            builtCities.put(regionName, city);
-            newCities.add(city);
+            builtCities.put(regionName, regionName);
+            newCities.add(regionName);
         }
 
         markedForBuilding.clear();

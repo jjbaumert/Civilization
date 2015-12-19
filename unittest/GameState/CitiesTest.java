@@ -172,7 +172,7 @@ public class CitiesTest {
         assertTrue(cities.numberOfCitiesMarkedOrPlaced()==1);
         assertTrue(cities.numberOfCitiesBuilt()==1);
 
-        assertTrue(cities.getBuiltCities().iterator().next().getRegionName().equals("2"));
+        assertTrue(cities.getBuiltCities().iterator().next().equals("2"));
     }
 
     @Test
