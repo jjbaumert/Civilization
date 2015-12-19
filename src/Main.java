@@ -19,15 +19,6 @@ public class Main extends Application {
         gameMap = new GameMap(scene);
         gameMap.draw();
 
-        TradingCards tradingCards = new TradingCards();
-        tradingCards.loadCardDescriptions();
-        tradingCards.initialSetup();
-        ArrayList<TradingCardDescription> draw = tradingCards.drawCards(9);
-
-        for(TradingCardDescription card: draw) {
-            System.out.println(card);
-        }
-
         primaryStage.setScene(scene);
         primaryStage.show();
     }
