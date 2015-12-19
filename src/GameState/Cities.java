@@ -1,65 +1,77 @@
 package GameState;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Cities {
+    final int MAXIMUM_CITIES=9;
+
     class CityTokensNotAvailable extends Exception {}
     class CityRegionDuplicate extends Exception {}
     class CityAlreadyBuilt extends Exception {}
     class CityAlreadyMarked extends Exception {}
+    class CityNotPlaced extends Exception {}
 
-    private Set<City> placedCities;
-    private Set<City> markedForReduction;
+    private Map<String, City> builtCities;
+    private Set<String> markedForReduction;
     private Set<String> markedForBuilding;
 
     Cities() {
-        placedCities = new HashSet<>();
+        builtCities = new HashMap<>();
         markedForBuilding = new HashSet<>();
         markedForReduction = new HashSet<>();
     }
 
-    int getCityTokensAvailable() {
-        return 9-countMarkedOrPlaced();
+    Collection<City> getBuiltCities() { return builtCities.values(); }
+
+    int numberOfCityTokensAvailable() {
+        return MAXIMUM_CITIES-numberOfCitiesMarkedOrPlaced();
     }
 
-    int citiesBuilt() {
-        return placedCities.size();
+    int numberOfCitiesBuilt() {
+        return builtCities.size();
     }
 
-    void markForReduction(Set<City> cities) throws CityAlreadyMarked {
-        for(City markedCity: markedForReduction) {
-            for(City city: cities) {
-                if(markedCity.getRegionName().equals(city.getRegionName())) {
+    int numberOfCitiesMarkedOrPlaced() {
+        return builtCities.size() + markedForBuilding.size();
+    }
+
+    void markForReduction(Set<String> cityNames) throws CityAlreadyMarked, CityNotPlaced {
+        for(String cityName: cityNames) {
+            for(String markedCityName: markedForReduction) {
+                if(markedCityName.equals(cityName)) {
                     throw new CityAlreadyMarked();
                 }
             }
+
+            if(!builtCities.containsKey(cityName)) {
+                throw new CityNotPlaced();
+            }
         }
-        markedForReduction.addAll(cities);
+
+        markedForReduction.addAll(cityNames);
     }
 
     Set<String> reduceMarkedCities() {
-        return new HashSet<>();
+        Set<String> reducedCities = markedForReduction;
+        markedForReduction = new HashSet<>();
+
+        reducedCities.forEach(builtCities::remove);
+
+        return reducedCities;
     }
 
-    Set<City> markedForReduction() {
+    Set<String> getCitiesMarkedForReduction() {
         return markedForReduction;
     }
 
-    int countMarkedOrPlaced() {
-        return placedCities.size() + markedForBuilding.size();
-    }
-
     void markForBuilding(Set<String> regionNames) throws CityAlreadyBuilt, CityRegionDuplicate, CityTokensNotAvailable {
-        if((9-countMarkedOrPlaced())<regionNames.size()) {
+        if((9- numberOfCitiesMarkedOrPlaced())<regionNames.size()) {
             throw new CityTokensNotAvailable();
         }
 
         for(String regionName: regionNames) {
-            for(City city: placedCities) {
-                if(city.getRegionName().equals(regionName)) {
-                    throw new CityAlreadyBuilt();
-                }
+            if (builtCities.containsKey(regionName)) {
+                throw new CityAlreadyBuilt();
             }
 
             for(String cityName: markedForBuilding) {
@@ -72,18 +84,23 @@ public class Cities {
         markedForBuilding.addAll(regionNames);
     }
 
-    Set<City> buildMarkedCities() throws CityTokensNotAvailable {
-        Set<City> cities = new HashSet<>();
+    Collection<City> buildMarkedCities() throws Cities.CityTokensNotAvailable {
+        Collection<City> newCities = new HashSet<>();
 
         for(String regionName: markedForBuilding) {
             City city = new City();
             city.setRegion(regionName);
-            cities.add(city);
+
+            builtCities.put(regionName, city);
+            newCities.add(city);
         }
 
-        placedCities.addAll(cities);
         markedForBuilding.clear();
 
-        return placedCities;
+        return newCities;
+    }
+
+    Set<String> getCitiesMarkedForBuilding() {
+        return markedForBuilding;
     }
 }
